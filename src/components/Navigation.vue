@@ -1,7 +1,7 @@
 <script setup>
-import { useCart } from '../composables/useCart';
+import { useCartStore } from '../stores/cart';
 
-const { qty } = useCart();
+const cartStore = useCartStore();
 </script>
 
 <template>
@@ -15,7 +15,7 @@ const { qty } = useCart();
           <li class="nav-item">
             <router-link to="/cart" class="nav-link">
               Корзина
-              <span class="badge badge-info">{{ qty }}</span>
+              <span class="badge badge-info">{{ cartStore.qty }}</span>
             </router-link>
           </li>
         </ul>

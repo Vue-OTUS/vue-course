@@ -1,6 +1,6 @@
 <script setup>
-import { useCart } from '@/composables/useCart';
 import { computed, ref } from 'vue';
+import { useCartStore } from '../stores/cart';
 
 const props = defineProps({
   item: {
@@ -9,11 +9,11 @@ const props = defineProps({
   }
 });
 
-const { add, getCartProduct } = useCart();
+const cartStore = useCartStore();
 
 const qty = ref(1);
 
-const inCartQty = computed(() => getCartProduct(props.item.id)?.qty ?? 0);
+const inCartQty = computed(() => cartStore.getCartProduct(props.item.id)?.qty ?? 0);
 </script>
 
 <template>
@@ -25,9 +25,8 @@ const inCartQty = computed(() => getCartProduct(props.item.id)?.qty ?? 0);
       <input v-model="qty" :min="1" :max="item.available" type="number" />
       {{ inCartQty }} в корзине
     </td>
-    <td>{{ sum }}</td>
     <td>
-      <button class="btn btn-primary" @click="add(item, qty)">
+      <button class="btn btn-primary" @click="cartStore.add(item, qty)">
         В корзину
       </button>
     </td>

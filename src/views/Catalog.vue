@@ -84,7 +84,6 @@ async function fetchCatalog() {
           <th>Название</th>
           <th>Цена</th>
           <th>Количество</th>
-          <th>Сумма</th>
           <th>В корзину</th>
         </tr>
       </thead>
